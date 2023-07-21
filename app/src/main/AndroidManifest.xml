@@ -29,10 +29,16 @@
         android:theme="@style/Theme.AppBlutooth"
         tools:targetApi="31">
         <activity
-            android:name=".BleOperationsActivity"
+            android:name=".server.AdvertiserActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".client.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".client.BleOperationsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
