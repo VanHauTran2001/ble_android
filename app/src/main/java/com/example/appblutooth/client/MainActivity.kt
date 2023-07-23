@@ -20,9 +20,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.appblutooth.R
 import com.example.appblutooth.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    private var bluetoothManager : BleManager?= null
     private val bluetoothAdapter: BluetoothAdapter by lazy {
         val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
         bluetoothManager.adapter
@@ -45,12 +44,12 @@ class MainActivity : AppCompatActivity(){
 
     private val scanResultAdapter: ScanResultAdapter by lazy {
         ScanResultAdapter(scanResults) { result ->
-            if (isScanning){
+            if (isScanning) {
                 stopBleScan()
             }
-            with(result.device){
+            with(result.device) {
                 val intent = Intent(this@MainActivity, BleOperationsActivity::class.java)
-                intent.putExtra("device",this)
+                intent.putExtra("device", this)
                 startActivity(intent)
             }
         }
@@ -79,7 +78,6 @@ class MainActivity : AppCompatActivity(){
             }
         }
         setupRecyclerView()
-        bluetoothManager = BleManager(applicationContext)
         binding.imgBack.setOnClickListener {
             stopBleScan()
             finish()
@@ -94,13 +92,14 @@ class MainActivity : AppCompatActivity(){
             enabledBluetoothLauncher.launch(enableBluetoothIntent)
         }
     }
+
     private val requestMultiplePermissions =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             permissions.entries.forEach { entry ->
                 val isGranted = entry.value
-                if (isGranted){
+                if (isGranted) {
                     startBleScan()
-                }else{
+                } else {
                     val enableBluetoothIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
                     enabledBluetoothLauncher.launch(enableBluetoothIntent)
                 }
@@ -130,9 +129,10 @@ class MainActivity : AppCompatActivity(){
         bleScanner.startScan(scanFilters, scanSettings, scanCallback)
         isScanning = true
     }
+
     private val enabledBluetoothLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
-    ){}
+    ) {}
     private val blueToothLauncherPermision = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
@@ -168,7 +168,7 @@ class MainActivity : AppCompatActivity(){
                 scanResults[indexQuery] = result!!
                 scanResultAdapter.notifyItemChanged(indexQuery)
             } else {
-                if (result!!.device.name != null){
+                if (result!!.device.name != null) {
                     scanResults.add(result)
                     scanResultAdapter.notifyItemInserted(scanResults.size)
                 }

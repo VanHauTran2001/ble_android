@@ -7,9 +7,10 @@
 
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".client.BleOperationsActivity">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -44,5 +45,32 @@
                 android:layout_marginEnd="10dp"
                 android:id="@+id/txtDisConnect"/>
         </RelativeLayout>
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:weightSum="3">
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="message"
+                android:layout_weight="2.2"
+                android:id="@+id/edtMessage"
+                android:textSize="18dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"/>
+            <Button
+                android:id="@+id/btnSend"
+                android:layout_width="0dp"
+                android:textSize="18dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:text="Send" />
+        </LinearLayout>
+
+        <include
+            android:id="@+id/viewClientLog"
+            layout="@layout/view_log"/>
+    </LinearLayout>
 </layout>

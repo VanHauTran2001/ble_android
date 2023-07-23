@@ -32,13 +32,8 @@
                 android:layout_centerHorizontal="true"/>
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/txtData"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:layout_margin="20dp"
-            android:textColor="@color/black"
-            android:textSize="20dp"/>
+        <include
+            android:id="@+id/view_server_log"
+            layout="@layout/view_log"/>
     </LinearLayout>
 </layout>

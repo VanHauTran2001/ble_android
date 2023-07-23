@@ -19,5 +19,6 @@ class HomeActivity : AppCompatActivity() {
         binding.btnServer.setOnClickListener {
             startActivity(Intent(this@HomeActivity,AdvertiserActivity::class.java))
         }
+
     }
 }
